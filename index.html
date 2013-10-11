@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Leaflet Draw</title>
+
+	<link rel="stylesheet" href="css/leaflet.css" />
+	<link rel="stylesheet" href="css/leaflet.draw.css" />
+	
+	<!--[if lte IE 8]>
+		<link rel="stylesheet" href="lib/leaflet/leaflet.ie.css" />
+		<link rel="stylesheet" href="leaflet.draw.ie.css" />
+	<![endif]-->
+	
+	<script src="js/leaflet.js"></script>
+	<script src="js/leaflet.draw.js"></script>
+</head>
+<body>
+	<div id="map" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+	
+	<script>
+	
+		var maintile = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+			maxZoom: 18,
+			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+		})
+	
+		map = new L.Map('map', {layers: [maintile], center: new L.LatLng(19.05, 72.866), zoom: 12 });
+
+		//var drawnItems = new L.FeatureGroup();
+		
+		var scmumbai = [{"lat":19.05173366503917,"lng":72.8335189819336},{"lat":19.05465429219405,"lng":72.84107208251953},{"lat":19.04848846345587,"lng":72.84278869628906},{"lat":19.05043559202223,"lng":72.850341796875},{"lat":19.049786551705495,"lng":72.85240173339842},{"lat":19.054978803148376,"lng":72.8561782836914},{"lat":19.054978803148376,"lng":72.85961151123047},{"lat":19.05465429219405,"lng":72.86235809326172},{"lat":19.054978803148376,"lng":72.86750793457031},{"lat":19.059846391278224,"lng":72.87094116210938},{"lat":19.05043559202223,"lng":72.87059783935547},{"lat":19.054005268380937,"lng":72.8839874267578},{"lat":19.0543297806049,"lng":72.8939437866211},{"lat":19.047514890604802,"lng":72.89360046386719},{"lat":19.046216784585397,"lng":72.90767669677733},{"lat":19.05627684061726,"lng":72.9107666015625},{"lat":19.05692585554252,"lng":72.91454315185547},{"lat":19.049462030595098,"lng":72.91831970214844},{"lat":19.046865838864306,"lng":72.9220962524414},{"lat":19.043620542087073,"lng":72.92621612548828},{"lat":19.048812986470274,"lng":72.93342590332031},{"lat":19.05822387777432,"lng":72.9605484008789},{"lat":19.044918668412617,"lng":72.96089172363281},{"lat":19.030638720558215,"lng":72.95539855957031},{"lat":19.022524566822824,"lng":72.94715881347656},{"lat":19.015708371498114,"lng":72.93891906738281},{"lat":19.007268885329545,"lng":72.92655944824219},{"lat":19.000452064638484,"lng":72.9166030883789},{"lat":18.995582736008508,"lng":72.90767669677733},{"lat":18.993959594805983,"lng":72.90321350097656},{"lat":18.994608853186378,"lng":72.89703369140625},{"lat":18.99493348142689,"lng":72.8891372680664},{"lat":18.993959594805983,"lng":72.88604736328125},{"lat":19.007918091778937,"lng":72.88364410400389},{"lat":19.005321250778007,"lng":72.8781509399414},{"lat":19.002399756194887,"lng":72.87025451660156},{"lat":19.00467203419329,"lng":72.86922454833984},{"lat":19.003698204565687,"lng":72.8664779663086},{"lat":19.002399756194887,"lng":72.861328125},{"lat":18.994284224312736,"lng":72.85961151123047},{"lat":18.993959594805983,"lng":72.85137176513672},{"lat":18.999802829053262,"lng":72.85343170166016},{"lat":18.995907362349577,"lng":72.84553527832031},{"lat":19.00629507090433,"lng":72.83042907714844},{"lat":19.010839489441842,"lng":72.83077239990234},{"lat":19.015059195461667,"lng":72.8280258178711},{"lat":19.012462465968426,"lng":72.81841278076172},{"lat":19.015708371498114,"lng":72.8177261352539},{"lat":19.019603374481555,"lng":72.82459259033203},{"lat":19.027068541735314,"lng":72.83180236816406},{"lat":19.03648066584197,"lng":72.83454895019531},{"lat":19.045567727768148,"lng":72.83454895019531}]
+		
+		map.addLayer(new L.Polygon(scmumbai));
+		
+		
+		// map.addLayer(drawnItems);
+		// 
+		// var drawControl = new L.Control.Draw({
+		// 	draw: {
+		// 		position: 'topleft',
+		// 		polygon: {
+		// 			title: 'Draw a sexy polygon!',
+		// 			allowIntersection: false,
+		// 			drawError: {
+		// 				color: '#b00b00',
+		// 				timeout: 1000
+		// 			},
+		// 			shapeOptions: {
+		// 				color: '#bada55'
+		// 			},
+		// 			showArea: true
+		// 		},
+		// 		polyline: {
+		// 			metric: false
+		// 		},
+		// 		circle: {
+		// 			shapeOptions: {
+		// 				color: '#662d91'
+		// 			}
+		// 		}
+		// 	},
+		// 	edit: {
+		// 		featureGroup: drawnItems
+		// 	}
+		// });
+		// map.addControl(drawControl);
+		// 
+		// map.on('draw:created', function (e) {
+		// 	var type = e.layerType,
+		// 		layer = e.layer;
+		// 
+		// 	if (type === 'marker') {
+		// 		layer.bindPopup('A popup!');
+		// 	}
+		// 
+		// 	drawnItems.addLayer(layer);
+		// });
+		// 
+		// 
+		// var imageUrl = 'south-central-mumbai.png',
+		//     imageBounds = [[18.98, 72.815], [19.07, 72.97]];
+		// 
+		// L.imageOverlay(imageUrl, imageBounds, {"opacity": 0.5}).addTo(map);		
+	</script>
+</body>
+</html>
